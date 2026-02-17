@@ -1,0 +1,14 @@
+{
+  "socketPath": "\\\\.\\pipe\\mcp-7e1ca3aa-5d2e-48e5-93ce-255693961848.sock",
+  "scheme": "pipe",
+  "headers": {
+    "Authorization": "Nonce d126120b-48be-4288-94d8-670c467fad0c"
+  },
+  "pid": 18872,
+  "ideName": "Visual Studio Code",
+  "timestamp": 1771341178891,
+  "workspaceFolders": [
+    "c:\\Users\\DELL\\Downloads\\react-native-app"
+  ],
+  "isTrusted": true
+}

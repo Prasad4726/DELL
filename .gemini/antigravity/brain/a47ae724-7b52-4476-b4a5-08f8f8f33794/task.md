@@ -1,0 +1,73 @@
+# City-Wide Vehicle Parking Rental Application
+
+## Backend Development
+- [x] Set up project structure and configuration
+  - [x] Initialize Node.js project
+  - [x] Create folder structure (config, models, controllers, routes, services, middlewares, utils)
+  - [x] Set up environment configuration
+  - [x] Configure database connection
+- [x] Database schema and models
+  - [x] Create PostgreSQL schema SQL file
+  - [x] Implement Sequelize models (Users, Parkings, ParkingSlots, Bookings, Payments, Reviews)
+  - [x] Set up model associations
+- [x] Authentication system
+  - [x] Implement JWT authentication
+  - [x] Create signup/login endpoints
+  - [x] Password hashing with bcrypt
+  - [x] Role-based middleware
+- [x] Parking management
+  - [x] CRUD operations for parkings
+  - [x] Geolocation storage and validation
+  - [x] Owner-specific parking management
+- [x] Nearby parking search
+  - [x] Implement geo-search logic
+  - [x] Distance calculation
+  - [x] Availability filtering
+- [x] Booking system
+  - [x] Time-based slot booking logic
+  - [x] Overlap prevention
+  - [x] Concurrent booking handling
+  - [x] Price calculation
+  - [x] Slot status management
+- [x] Payment module
+  - [x] Payment creation and tracking
+  - [x] Status management
+  - [x] Booking rollback on failure
+- [x] Reviews system
+  - [x] Create/read reviews
+  - [x] Rating aggregation
+
+## Frontend Development (React Native)
+- [x] Project setup
+  - [x] Initialize React Native project
+  - [x] Set up folder structure
+  - [x] Configure navigation
+  - [x] Set up Redux Toolkit
+- [x] Authentication screens
+  - [x] Login screen
+  - [x] Signup screen
+  - [x] Token management
+- [x] Core screens
+  - [x] Home screen
+  - [x] Map view with markers
+  - [x] Parking details
+  - [x] Slot selection
+  - [x] Booking confirmation
+  - [x] Payment screen
+  - [x] Booking history
+  - [x] Profile screen
+- [x] API integration
+  - [x] Axios configuration
+  - [x] API service layer
+  - [x] Redux slices
+  - [x] Error handling
+- [x] Map integration
+  - [x] Google Maps/Mapbox setup
+  - [x] User location tracking
+  - [x] Parking markers
+  - [x] Marker interactions
+
+## Documentation
+- [x] API documentation
+- [x] Setup instructions
+- [x] Environment variables guide

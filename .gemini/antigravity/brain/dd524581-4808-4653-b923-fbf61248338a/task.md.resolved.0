@@ -1,0 +1,24 @@
+# Hostel Management Application - Design Task
+
+## Phase 1: Architecture & Planning
+- [ ] System architecture design
+- [ ] Database schema design
+- [ ] API endpoint specification
+- [ ] Screen navigation flow
+
+## Phase 2: Module-wise Breakdown
+- [ ] Authentication & Authorization module
+- [ ] Multi-hostel management module
+- [ ] Room & bed management module
+- [ ] Tenant lifecycle module
+- [ ] Food menu management module
+- [ ] Payment & rent tracking module
+- [ ] Dashboard & analytics module
+- [ ] Notifications & announcements module
+- [ ] Guest booking module
+- [ ] Admin configuration module
+
+## Phase 3: Technical Specifications
+- [ ] API request/response samples
+- [ ] Validation rules & edge cases
+- [ ] Sprint-ready task breakdown

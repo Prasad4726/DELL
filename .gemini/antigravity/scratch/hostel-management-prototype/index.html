@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel Management App - Prototype</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splash-screen" class="screen active">
+        <div class="splash-content">
+            <div class="logo-container">
+                <i class="fas fa-building"></i>
+                <h1>HostelHub</h1>
+            </div>
+            <p class="tagline">Manage Your Hostel Effortlessly</p>
+            <div class="loader"></div>
+        </div>
+    </div>
+
+    <!-- Onboarding Screens -->
+    <div id="onboarding-screen" class="screen">
+        <div class="onboarding-container">
+            <div class="onboarding-slides">
+                <div class="slide active" data-slide="1">
+                    <div class="slide-icon">
+                        <i class="fas fa-hotel"></i>
+                    </div>
+                    <h2>Manage Your Hostel Effortlessly</h2>
+                    <p>Complete hostel management solution for owners, tenants, and guests</p>
+                </div>
+                <div class="slide" data-slide="2">
+                    <div class="slide-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h2>Track Payments & Tenants</h2>
+                    <p>Automated rent tracking, online payments, and instant notifications</p>
+                </div>
+                <div class="slide" data-slide="3">
+                    <div class="slide-icon">
+                        <i class="fas fa-search-location"></i>
+                    </div>
+                    <h2>Find Short Stays Anywhere</h2>
+                    <p>Book hostel beds for 1-7 days in any city with instant confirmation</p>
+                </div>
+            </div>
+            <div class="slide-indicators">
+                <span class="indicator active" data-slide="1"></span>
+                <span class="indicator" data-slide="2"></span>
+                <span class="indicator" data-slide="3"></span>
+            </div>
+            <button class="btn btn-primary" id="get-started-btn">Get Started</button>
+        </div>
+    </div>
+
+    <!-- Role Selection Screen -->
+    <div id="role-selection-screen" class="screen">
+        <div class="container">
+            <div class="header">
+                <h2>Select Your Role</h2>
+                <p>Choose how you want to use HostelHub</p>
+            </div>
+            <div class="role-cards">
+                <div class="role-card" data-role="owner">
+                    <div class="role-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Hostel Owner</h3>
+                    <p>Manage hostels, tenants, and payments</p>
+                    <ul class="role-features">
+                        <li><i class="fas fa-check"></i> Multi-hostel management</li>
+                        <li><i class="fas fa-check"></i> Tenant tracking</li>
+                        <li><i class="fas fa-check"></i> Payment analytics</li>
+                    </ul>
+                </div>
+                <div class="role-card" data-role="tenant">
+                    <div class="role-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Tenant</h3>
+                    <p>View your room and pay rent online</p>
+                    <ul class="role-features">
+                        <li><i class="fas fa-check"></i> View bed details</li>
+                        <li><i class="fas fa-check"></i> Pay rent online</li>
+                        <li><i class="fas fa-check"></i> Check food menu</li>
+                    </ul>
+                </div>
+                <div class="role-card" data-role="guest">
+                    <div class="role-icon">
+                        <i class="fas fa-suitcase"></i>
+                    </div>
+                    <h3>Guest</h3>
+                    <p>Find and book short stays</p>
+                    <ul class="role-features">
+                        <li><i class="fas fa-check"></i> Search hostels</li>
+                        <li><i class="fas fa-check"></i> Book instantly</li>
+                        <li><i class="fas fa-check"></i> Manage bookings</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Screen -->
+    <div id="login-screen" class="screen">
+        <div class="auth-container">
+            <div class="auth-header">
+                <button class="back-btn" onclick="showScreen('role-selection-screen')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2>Welcome Back</h2>
+                <p>Login to continue</p>
+            </div>
+            <form class="auth-form" id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email or Phone</label>
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="text" id="login-email" placeholder="Enter email or phone" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="login-password" placeholder="Enter password" required>
+                        <i class="fas fa-eye toggle-password"></i>
+                    </div>
+                </div>
+                <a href="#" class="forgot-password">Forgot Password?</a>
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+            </form>
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="#" onclick="showScreen('register-screen')">Register</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Screen -->
+    <div id="register-screen" class="screen">
+        <div class="auth-container">
+            <div class="auth-header">
+                <button class="back-btn" onclick="showScreen('role-selection-screen')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2>Create Account</h2>
+                <p>Join HostelHub today</p>
+            </div>
+            <form class="auth-form" id="register-form">
+                <div class="form-group">
+                    <label for="register-name">Full Name</label>
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="register-name" placeholder="Enter full name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="register-email" placeholder="Enter email" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="register-phone">Phone</label>
+                    <div class="input-group">
+                        <i class="fas fa-phone"></i>
+                        <input type="tel" id="register-phone" placeholder="+91 98765 43210" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="register-password" placeholder="Create password" required>
+                        <i class="fas fa-eye toggle-password"></i>
+                    </div>
+                    <small class="password-hint">Min 8 chars, 1 uppercase, 1 number, 1 special char</small>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">I agree to <a href="#">Terms & Conditions</a></label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Register</button>
+            </form>
+            <div class="auth-footer">
+                <p>Already have an account? <a href="#" onclick="showScreen('login-screen')">Login</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Owner Dashboard -->
+    <div id="owner-dashboard" class="screen">
+        <div class="mobile-app">
+            <div class="app-header">
+                <div class="header-left">
+                    <h3>Dashboard</h3>
+                    <p class="greeting">Hello, Rajesh 👋</p>
+                </div>
+                <div class="header-right">
+                    <button class="icon-btn notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="app-content">
+                <!-- Summary Cards -->
+                <div class="summary-grid">
+                    <div class="summary-card">
+                        <div class="card-icon blue">
+                            <i class="fas fa-hotel"></i>
+                        </div>
+                        <div class="card-info">
+                            <p class="card-label">Total Hostels</p>
+                            <h3 class="card-value">3</h3>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="card-icon green">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="card-info">
+                            <p class="card-label">Occupancy</p>
+                            <h3 class="card-value">80%</h3>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="card-icon purple">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <div class="card-info">
+                            <p class="card-label">Monthly Revenue</p>
+                            <h3 class="card-value">₹9.6L</h3>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="card-icon orange">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <div class="card-info">
+                            <p class="card-label">Pending Dues</p>
+                            <h3 class="card-value">₹45K</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Payments -->
+                <div class="section">
+                    <div class="section-header">
+                        <h4>Recent Payments</h4>
+                        <a href="#" class="view-all">View All</a>
+                    </div>
+                    <div class="payment-list">
+                        <div class="payment-item">
+                            <div class="payment-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="payment-info">
+                                <p class="payment-name">Amit Sharma</p>
+                                <p class="payment-date">Today, 10:30 AM</p>
+                            </div>
+                            <div class="payment-amount success">
+                                +₹8,000
+                            </div>
+                        </div>
+                        <div class="payment-item">
+                            <div class="payment-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="payment-info">
+                                <p class="payment-name">Priya Singh</p>
+                                <p class="payment-date">Yesterday, 3:15 PM</p>
+                            </div>
+                            <div class="payment-amount success">
+                                +₹10,500
+                            </div>
+                        </div>
+                        <div class="payment-item">
+                            <div class="payment-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="payment-info">
+                                <p class="payment-name">Rahul Kumar</p>
+                                <p class="payment-date">2 days ago</p>
+                            </div>
+                            <div class="payment-amount success">
+                                +₹7,500
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Dues -->
+                <div class="section">
+                    <div class="section-header">
+                        <h4>Upcoming Dues</h4>
+                        <a href="#" class="view-all">View All</a>
+                    </div>
+                    <div class="due-list">
+                        <div class="due-item">
+                            <div class="due-info">
+                                <p class="due-name">Vikram Patel</p>
+                                <p class="due-date">Due in 2 days</p>
+                            </div>
+                            <div class="due-amount pending">
+                                ₹9,000
+                            </div>
+                        </div>
+                        <div class="due-item">
+                            <div class="due-info">
+                                <p class="due-name">Sneha Reddy</p>
+                                <p class="due-date">Due in 5 days</p>
+                            </div>
+                            <div class="due-amount pending">
+                                ₹8,500
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Navigation -->
+            <div class="bottom-nav">
+                <button class="nav-item active" data-screen="owner-dashboard">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-item" data-screen="owner-hostels">
+                    <i class="fas fa-building"></i>
+                    <span>Hostels</span>
+                </button>
+                <button class="nav-item" data-screen="owner-tenants">
+                    <i class="fas fa-users"></i>
+                    <span>Tenants</span>
+                </button>
+                <button class="nav-item" data-screen="owner-payments">
+                    <i class="fas fa-wallet"></i>
+                    <span>Payments</span>
+                </button>
+                <button class="nav-item" data-screen="owner-profile">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Profile</span>
+                </button>
+            </div>
+
+            <!-- FAB -->
+            <button class="fab" onclick="showQuickActions()">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Owner Hostels Screen -->
+    <div id="owner-hostels" class="screen">
+        <div class="mobile-app">
+            <div class="app-header">
+                <h3>My Hostels</h3>
+                <button class="icon-btn" onclick="showScreen('add-hostel')">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+
+            <div class="app-content">
+                <div class="hostel-list">
+                    <div class="hostel-card" onclick="showScreen('hostel-detail')">
+                        <div class="hostel-image">
+                            <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=400" alt="Hostel">
+                            <span class="hostel-badge active">Active</span>
+                        </div>
+                        <div class="hostel-info">
+                            <h4>Green Valley Boys Hostel</h4>
+                            <p class="hostel-location">
+                                <i class="fas fa-map-marker-alt"></i> Bangalore, Karnataka
+                            </p>
+                            <div class="hostel-stats">
+                                <div class="stat">
+                                    <span class="stat-value">50</span>
+                                    <span class="stat-label">Total Beds</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">35</span>
+                                    <span class="stat-label">Occupied</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">15</span>
+                                    <span class="stat-label">Available</span>
+                                </div>
+                            </div>
+                            <div class="hostel-revenue">
+                                <span>Monthly Revenue:</span>
+                                <strong>₹2,80,000</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hostel-card">
+                        <div class="hostel-image">
+                            <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=400" alt="Hostel">
+                            <span class="hostel-badge active">Active</span>
+                        </div>
+                        <div class="hostel-info">
+                            <h4>Sunrise Girls Hostel</h4>
+                            <p class="hostel-location">
+                                <i class="fas fa-map-marker-alt"></i> Bangalore, Karnataka
+                            </p>
+                            <div class="hostel-stats">
+                                <div class="stat">
+                                    <span class="stat-value">40</span>
+                                    <span class="stat-label">Total Beds</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">38</span>
+                                    <span class="stat-label">Occupied</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">2</span>
+                                    <span class="stat-label">Available</span>
+                                </div>
+                            </div>
+                            <div class="hostel-revenue">
+                                <span>Monthly Revenue:</span>
+                                <strong>₹3,80,000</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <button class="nav-item" data-screen="owner-dashboard">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-item active" data-screen="owner-hostels">
+                    <i class="fas fa-building"></i>
+                    <span>Hostels</span>
+                </button>
+                <button class="nav-item" data-screen="owner-tenants">
+                    <i class="fas fa-users"></i>
+                    <span>Tenants</span>
+                </button>
+                <button class="nav-item" data-screen="owner-payments">
+                    <i class="fas fa-wallet"></i>
+                    <span>Payments</span>
+                </button>
+                <button class="nav-item" data-screen="owner-profile">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Profile</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tenant Home Screen -->
+    <div id="tenant-home" class="screen">
+        <div class="mobile-app">
+            <div class="app-header">
+                <div class="header-left">
+                    <h3>Home</h3>
+                    <p class="greeting">Welcome, Amit 👋</p>
+                </div>
+                <div class="header-right">
+                    <button class="icon-btn notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">2</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="app-content">
+                <!-- Bed Info Card -->
+                <div class="info-card">
+                    <div class="card-header">
+                        <h4><i class="fas fa-bed"></i> My Bed</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="info-row">
+                            <span class="label">Bed Number:</span>
+                            <span class="value">101-A</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Room Number:</span>
+                            <span class="value">101</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Floor:</span>
+                            <span class="value">First Floor</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Room Type:</span>
+                            <span class="value">Double Sharing</span>
+                        </div>
+                        <div class="amenities">
+                            <span class="amenity"><i class="fas fa-snowflake"></i> AC</span>
+                            <span class="amenity"><i class="fas fa-bath"></i> Attached Bath</span>
+                            <span class="amenity"><i class="fas fa-wifi"></i> WiFi</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hostel Info Card -->
+                <div class="info-card">
+                    <div class="card-header">
+                        <h4><i class="fas fa-building"></i> Hostel Information</h4>
+                    </div>
+                    <div class="card-body">
+                        <h5>Green Valley Boys Hostel</h5>
+                        <p class="address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            123 MG Road, Near Metro Station<br>
+                            Bangalore, Karnataka - 560001
+                        </p>
+                        <div class="contact-buttons">
+                            <button class="btn btn-outline">
+                                <i class="fas fa-phone"></i> Call
+                            </button>
+                            <button class="btn btn-outline">
+                                <i class="fas fa-envelope"></i> Email
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Next Due Alert -->
+                <div class="alert-card warning">
+                    <div class="alert-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="alert-content">
+                        <h5>Payment Due</h5>
+                        <p>Your rent of ₹10,500 is due on 01-Mar-2026</p>
+                        <button class="btn btn-primary btn-sm" onclick="showScreen('tenant-dues')">Pay Now</button>
+                    </div>
+                </div>
+
+                <!-- Announcements -->
+                <div class="section">
+                    <div class="section-header">
+                        <h4>Announcements</h4>
+                        <a href="#" class="view-all">View All</a>
+                    </div>
+                    <div class="announcement-list">
+                        <div class="announcement-item high">
+                            <div class="announcement-priority">
+                                <i class="fas fa-exclamation-circle"></i>
+                            </div>
+                            <div class="announcement-content">
+                                <h5>Water Supply Maintenance</h5>
+                                <p>Water supply will be interrupted on Sunday from 10 AM to 2 PM for tank cleaning.</p>
+                                <span class="announcement-date">Today, 9:00 AM</span>
+                            </div>
+                        </div>
+                        <div class="announcement-item normal">
+                            <div class="announcement-priority">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="announcement-content">
+                                <h5>New Food Menu</h5>
+                                <p>Updated weekly menu is now available. Check the Food Menu tab.</p>
+                                <span class="announcement-date">Yesterday</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <button class="nav-item active" data-screen="tenant-home">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </button>
+                <button class="nav-item" data-screen="tenant-dues">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <span>Dues</span>
+                </button>
+                <button class="nav-item" data-screen="tenant-food">
+                    <i class="fas fa-utensils"></i>
+                    <span>Food Menu</span>
+                </button>
+                <button class="nav-item" data-screen="tenant-profile">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Profile</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Guest Search Screen -->
+    <div id="guest-search" class="screen">
+        <div class="mobile-app">
+            <div class="app-header">
+                <h3>Search Hostels</h3>
+                <button class="icon-btn">
+                    <i class="fas fa-sliders-h"></i>
+                </button>
+            </div>
+
+            <div class="app-content">
+                <!-- Search Form -->
+                <div class="search-card">
+                    <div class="form-group">
+                        <label>City</label>
+                        <div class="input-group">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <input type="text" placeholder="Enter city" value="Bangalore">
+                        </div>
+                    </div>
+                    <div class="date-row">
+                        <div class="form-group">
+                            <label>Check-in</label>
+                            <div class="input-group">
+                                <i class="fas fa-calendar"></i>
+                                <input type="date" value="2026-02-10">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Check-out</label>
+                            <div class="input-group">
+                                <i class="fas fa-calendar"></i>
+                                <input type="date" value="2026-02-11">
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-block">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+
+                <!-- Search Results -->
+                <div class="section">
+                    <div class="section-header">
+                        <h4>Available Hostels (5)</h4>
+                    </div>
+                    <div class="search-results">
+                        <div class="result-card" onclick="showScreen('guest-hostel-detail')">
+                            <div class="result-image">
+                                <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=400" alt="Hostel">
+                                <div class="result-rating">
+                                    <i class="fas fa-star"></i> 4.5
+                                </div>
+                            </div>
+                            <div class="result-info">
+                                <h5>Green Valley Boys Hostel</h5>
+                                <p class="result-location">
+                                    <i class="fas fa-map-marker-alt"></i> Bangalore • 2.3 km away
+                                </p>
+                                <div class="result-amenities">
+                                    <span><i class="fas fa-wifi"></i></span>
+                                    <span><i class="fas fa-snowflake"></i></span>
+                                    <span><i class="fas fa-parking"></i></span>
+                                    <span><i class="fas fa-shield-alt"></i></span>
+                                </div>
+                                <div class="result-footer">
+                                    <div class="result-price">
+                                        <span class="price">₹500</span>
+                                        <span class="period">/night</span>
+                                    </div>
+                                    <span class="result-beds">5 beds available</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="result-card">
+                            <div class="result-image">
+                                <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=400" alt="Hostel">
+                                <div class="result-rating">
+                                    <i class="fas fa-star"></i> 4.7
+                                </div>
+                            </div>
+                            <div class="result-info">
+                                <h5>Sunrise Girls Hostel</h5>
+                                <p class="result-location">
+                                    <i class="fas fa-map-marker-alt"></i> Bangalore • 3.1 km away
+                                </p>
+                                <div class="result-amenities">
+                                    <span><i class="fas fa-wifi"></i></span>
+                                    <span><i class="fas fa-snowflake"></i></span>
+                                    <span><i class="fas fa-utensils"></i></span>
+                                    <span><i class="fas fa-dumbbell"></i></span>
+                                </div>
+                                <div class="result-footer">
+                                    <div class="result-price">
+                                        <span class="price">₹600</span>
+                                        <span class="period">/night</span>
+                                    </div>
+                                    <span class="result-beds">2 beds available</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <button class="nav-item active" data-screen="guest-search">
+                    <i class="fas fa-search"></i>
+                    <span>Search</span>
+                </button>
+                <button class="nav-item" data-screen="guest-bookings">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Bookings</span>
+                </button>
+                <button class="nav-item" data-screen="guest-profile">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Profile</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

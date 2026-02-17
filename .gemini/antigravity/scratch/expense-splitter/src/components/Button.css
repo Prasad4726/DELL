@@ -1,0 +1,113 @@
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-semibold);
+    border: none;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-base) var(--ease-in-out);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.button:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Variants */
+.button-primary {
+    background: var(--gradient-primary);
+    color: white;
+}
+
+.button-primary:hover:not(:disabled) {
+    box-shadow: var(--shadow-glow), var(--shadow-lg);
+}
+
+.button-secondary {
+    background: var(--color-bg-primary);
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+}
+
+.button-secondary:hover:not(:disabled) {
+    background: var(--color-primary);
+    color: white;
+}
+
+.button-danger {
+    background: var(--color-danger);
+    color: white;
+}
+
+.button-danger:hover:not(:disabled) {
+    background: #dc2626;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3), var(--shadow-lg);
+}
+
+/* Sizes */
+.button-small {
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--font-size-sm);
+}
+
+.button-medium {
+    padding: var(--space-md) var(--space-xl);
+    font-size: var(--font-size-base);
+}
+
+.button-large {
+    padding: var(--space-lg) var(--space-2xl);
+    font-size: var(--font-size-lg);
+}
+
+.button-full {
+    width: 100%;
+}
+
+.button-icon {
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+}
+
+.button-text {
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .button-medium {
+        padding: var(--space-sm) var(--space-lg);
+        font-size: var(--font-size-sm);
+    }
+
+    .button-large {
+        padding: var(--space-md) var(--space-xl);
+        font-size: var(--font-size-base);
+    }
+}

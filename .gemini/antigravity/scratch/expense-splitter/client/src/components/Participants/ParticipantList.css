@@ -1,0 +1,35 @@
+.participant-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-lg);
+}
+
+.participant-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: white;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--gray-200);
+    transition: all var(--transition-base);
+    cursor: pointer;
+}
+
+.participant-icon {
+    font-size: 1.25rem;
+}
+
+.participant-name {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--gray-800);
+}
+
+.empty-message {
+    text-align: center;
+    color: var(--gray-500);
+    font-style: italic;
+    margin-top: var(--spacing-lg);
+}

@@ -1,0 +1,32 @@
+INFO  2026-02-16T05:08:42 +678ms service=default version=1.2.5 args=["debug","config"] opencode
+INFO  2026-02-16T05:08:42 +2ms service=default directory=C:\Users\DELL\AppData\Local\OpenCode creating instance
+INFO  2026-02-16T05:08:42 +1ms service=project directory=C:\Users\DELL\AppData\Local\OpenCode fromDirectory
+INFO  2026-02-16T05:08:42 +124ms service=db path=C:\Users\DELL\.local\share\opencode\opencode.db opening database
+INFO  2026-02-16T05:08:42 +23ms service=db count=3 mode=bundled applying migrations
+INFO  2026-02-16T05:08:42 +11ms service=default directory=C:\Users\DELL\AppData\Local\OpenCode bootstrapping
+INFO  2026-02-16T05:08:42 +5ms service=config path=C:\Users\DELL\.config\opencode\config.json loading
+INFO  2026-02-16T05:08:42 +1ms service=config path=C:\Users\DELL\.config\opencode\opencode.json loading
+INFO  2026-02-16T05:08:42 +0ms service=config path=C:\Users\DELL\.config\opencode\opencode.jsonc loading
+INFO  2026-02-16T05:08:42 +28ms service=plugin name=CodexAuthPlugin loading internal plugin
+INFO  2026-02-16T05:08:42 +1ms service=plugin name=CopilotAuthPlugin loading internal plugin
+INFO  2026-02-16T05:08:42 +1ms service=plugin name=gitlabAuthPlugin loading internal plugin
+INFO  2026-02-16T05:08:42 +0ms service=plugin path=opencode-anthropic-auth@0.0.13 loading plugin
+INFO  2026-02-16T05:08:42 +58ms service=bus type=* subscribing
+INFO  2026-02-16T05:08:42 +0ms service=bus type=session.updated subscribing
+INFO  2026-02-16T05:08:42 +1ms service=bus type=message.updated subscribing
+INFO  2026-02-16T05:08:42 +0ms service=bus type=message.part.updated subscribing
+INFO  2026-02-16T05:08:42 +0ms service=bus type=session.diff subscribing
+INFO  2026-02-16T05:08:42 +0ms service=format init
+INFO  2026-02-16T05:08:42 +0ms service=bus type=file.edited subscribing
+INFO  2026-02-16T05:08:42 +0ms service=lsp serverIds=deno, typescript, vue, eslint, oxlint, biome, gopls, ruby-lsp, pyright, elixir-ls, zls, csharp, fsharp, sourcekit-lsp, rust, clangd, svelte, astro, jdtls, kotlin-ls, yaml-ls, lua-ls, php intelephense, prisma, dart, ocaml-lsp, bash, terraform, texlab, dockerfile, gleam, clojure-lsp, nixd, tinymist, haskell-language-server enabled LSP servers
+INFO  2026-02-16T05:08:42 +1ms service=file.watcher init
+INFO  2026-02-16T05:08:42 +3ms service=scheduler id=snapshot.cleanup run
+INFO  2026-02-16T05:08:42 +1ms service=scheduler id=tool.truncation.cleanup run
+INFO  2026-02-16T05:08:42 +0ms service=bus type=command.executed subscribing
+INFO  2026-02-16T05:08:42 +6ms service=file.watcher platform=win32 backend=windows watcher backend
+INFO  2026-02-16T05:08:42 +89ms service=default directory=C:\Users\DELL\AppData\Local\OpenCode disposing instance
+INFO  2026-02-16T05:08:42 +0ms service=state key=C:\Users\DELL\AppData\Local\OpenCode waiting for state disposal to complete
+INFO  2026-02-16T05:08:42 +13ms service=vcs branch=master initialized
+INFO  2026-02-16T05:08:42 +0ms service=bus type=file.watcher.updated subscribing
+INFO  2026-02-16T05:08:42 +0ms service=bus type=file.watcher.updated unsubscribing
+INFO  2026-02-16T05:08:42 +41ms service=state key=C:\Users\DELL\AppData\Local\OpenCode state disposal completed

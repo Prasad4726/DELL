@@ -1,0 +1,27 @@
+INFO  2026-02-15T06:33:33 +706ms service=default version=1.2.4 args=["debug","config"] opencode
+INFO  2026-02-15T06:33:33 +1ms service=db path=C:\Users\DELL\.local\share\opencode\opencode.db opening database
+INFO  2026-02-15T06:33:33 +14ms service=db count=3 mode=bundled applying migrations
+INFO  2026-02-15T06:33:33 +15ms service=json-migration storage directory does not exist, skipping migration
+INFO  2026-02-15T06:33:33 +0ms service=default directory=C:\Users\DELL\AppData\Local\OpenCode creating instance
+INFO  2026-02-15T06:33:33 +1ms service=project directory=C:\Users\DELL\AppData\Local\OpenCode fromDirectory
+INFO  2026-02-15T06:33:33 +19ms service=default directory=C:\Users\DELL\AppData\Local\OpenCode bootstrapping
+INFO  2026-02-15T06:33:33 +27ms service=config path=C:\Users\DELL\.config\opencode\config.json loading
+INFO  2026-02-15T06:33:33 +2ms service=config path=C:\Users\DELL\.config\opencode\opencode.json loading
+INFO  2026-02-15T06:33:33 +1ms service=config path=C:\Users\DELL\.config\opencode\opencode.jsonc loading
+INFO  2026-02-15T06:33:33 +67ms service=plugin name=CodexAuthPlugin loading internal plugin
+INFO  2026-02-15T06:33:33 +0ms service=plugin name=CopilotAuthPlugin loading internal plugin
+INFO  2026-02-15T06:33:33 +1ms service=plugin name=gitlabAuthPlugin loading internal plugin
+INFO  2026-02-15T06:33:33 +0ms service=plugin path=opencode-anthropic-auth@0.0.13 loading plugin
+INFO  2026-02-15T06:33:33 +3ms service=bun pkg=opencode-anthropic-auth version=0.0.13 installing package using Bun's default registry resolution
+INFO  2026-02-15T06:33:33 +1ms service=bun cmd=["C:\\Users\\DELL\\AppData\\Local\\OpenCode\\opencode-cli.exe","add","--force","--exact","--cwd","C:\\Users\\DELL\\.cache\\opencode","opencode-anthropic-auth@0.0.13"] cwd=C:\Users\DELL\.cache\opencode running
+INFO  2026-02-15T06:33:36 +3171ms service=bun cmd=["C:\\Users\\DELL\\AppData\\Local\\OpenCode\\opencode-cli.exe","install"] cwd=C:\Users\DELL\.config\opencode running
+INFO  2026-02-15T06:33:44 +8267ms service=bun code=0 stdout=bun add v1.3.9 (cf6cdbbb)
+
+installed opencode-anthropic-auth@0.0.13
+
+13 packages installed [10.96s]
+ stderr=Resolving dependencies
+Resolved, downloaded and extracted [50]
+Saved lockfile
+ done
+INFO  2026-02-15T06:33:45 +474ms service=bus type=* subscribing

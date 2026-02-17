@@ -1,0 +1,72 @@
+.expense-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md);
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-sm);
+    border: 1px solid var(--color-border-light);
+    transition: all var(--transition-base) var(--ease-in-out);
+}
+
+.expense-item:hover {
+    background: var(--color-bg-tertiary);
+    border-color: var(--color-border);
+    transform: translateX(4px);
+}
+
+.expense-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    gap: var(--space-md);
+}
+
+.expense-participant {
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+    font-size: var(--font-size-base);
+}
+
+.expense-amount {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    font-size: var(--font-size-lg);
+    font-variant-numeric: tabular-nums;
+}
+
+.expense-remove {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: var(--font-size-lg);
+    transition: all var(--transition-base) var(--ease-in-out);
+    margin-left: var(--space-sm);
+}
+
+.expense-remove:hover {
+    background: var(--color-danger);
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .expense-item {
+        padding: var(--space-sm) var(--space-md);
+    }
+
+    .expense-participant {
+        font-size: var(--font-size-sm);
+    }
+
+    .expense-amount {
+        font-size: var(--font-size-base);
+    }
+}

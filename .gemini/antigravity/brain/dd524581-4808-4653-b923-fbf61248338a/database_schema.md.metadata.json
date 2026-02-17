@@ -1,0 +1,5 @@
+{
+  "artifactType": "ARTIFACT_TYPE_OTHER",
+  "summary": "Complete database schema design for SQL Server including all tables with columns, data types, constraints, relationships, indexes, and sample data. Covers users, hostels, rooms, beds, tenants, bookings, payments, food menu, notifications, and system configuration.",
+  "updatedAt": "2026-02-03T15:06:23.728982100Z"
+}

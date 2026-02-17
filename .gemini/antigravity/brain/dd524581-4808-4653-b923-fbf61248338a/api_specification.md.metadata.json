@@ -1,0 +1,5 @@
+{
+  "artifactType": "ARTIFACT_TYPE_OTHER",
+  "summary": "Complete REST API specification for the hostel management application including authentication, hostel management, tenant operations, payment processing, food menu, announcements, notifications, and guest booking endpoints with detailed request/response examples, validation rules, and error handling",
+  "updatedAt": "2026-02-03T15:08:53.047631600Z"
+}

@@ -1,0 +1,43 @@
+# Expense Splitter Application - Task Checklist
+
+## Project Setup
+- [/] Create project directory structure
+- [ ] Initialize frontend (React + Vite)
+- [ ] Initialize backend (Node.js + Express)
+- [ ] Configure environment files
+
+## Backend Development
+- [ ] Set up Express server
+- [ ] Configure MongoDB connection
+- [ ] Create data models (Participant, Expense)
+- [ ] Implement controllers
+- [ ] Create API routes
+- [ ] Implement calculation service
+- [ ] Add error handling middleware
+
+## Frontend Development
+- [ ] Set up React with Vite
+- [ ] Create global styles with modern design
+- [ ] Build UI components (Button, Card, Input)
+- [ ] Implement Header component
+- [ ] Build Participant management components
+- [ ] Build Expense management components
+- [ ] Create Results display component
+- [ ] Implement Framer Motion animations
+- [ ] Create API service layer
+- [ ] Build Dashboard page
+- [ ] Connect frontend to backend
+
+## Testing & Verification
+- [ ] Start backend server
+- [ ] Start frontend development server
+- [ ] Test participant addition
+- [ ] Test expense addition
+- [ ] Test calculation functionality
+- [ ] Verify animations and micro-interactions
+- [ ] Test responsive design
+
+## Documentation
+- [ ] Create comprehensive README
+- [ ] Document API endpoints
+- [ ] Add setup instructions

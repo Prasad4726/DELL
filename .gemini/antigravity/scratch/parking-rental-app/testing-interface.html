@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Rental App - Testing Interface</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            background: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .screen {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: fadeIn 0.3s;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .screen h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            box-shadow: 0 5px 15px rgba(108, 117, 125, 0.4);
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        .badge-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .badge-warning {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .badge-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .badge-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .response {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #667eea;
+            display: none;
+        }
+
+        .response.show {
+            display: block;
+        }
+
+        .response.success {
+            border-left-color: #28a745;
+            background: #d4edda;
+        }
+
+        .response.error {
+            border-left-color: #dc3545;
+            background: #f8d7da;
+        }
+
+        .map-container {
+            height: 400px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .slot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .slot {
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .slot.available {
+            background: #d4edda;
+            border: 2px solid #28a745;
+        }
+
+        .slot.occupied {
+            background: #f8d7da;
+            border: 2px solid #dc3545;
+            cursor: not-allowed;
+        }
+
+        .slot.selected {
+            background: #cce5ff;
+            border: 2px solid #004085;
+            transform: scale(1.05);
+        }
+
+        .rating {
+            display: flex;
+            gap: 5px;
+            font-size: 1.5em;
+        }
+
+        .star {
+            cursor: pointer;
+            color: #ddd;
+            transition: color 0.2s;
+        }
+
+        .star.filled {
+            color: #ffc107;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .stat-card h3 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .stat-card p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .payment-method {
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .payment-method:hover {
+            border-color: #667eea;
+        }
+
+        .payment-method.selected {
+            border-color: #667eea;
+            background: #e7eaff;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🅿️ Parking Rental App</h1>
+            <p>Complete Testing Interface - All Screens & Features</p>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="showScreen('login')">🔐 Login</div>
+            <div class="tab" onclick="showScreen('signup')">📝 Signup</div>
+            <div class="tab" onclick="showScreen('home')">🏠 Home</div>
+            <div class="tab" onclick="showScreen('map')">🗺️ Map View</div>
+            <div class="tab" onclick="showScreen('parking-details')">🅿️ Parking Details</div>
+            <div class="tab" onclick="showScreen('booking')">📅 Create Booking</div>
+            <div class="tab" onclick="showScreen('payment')">💳 Payment</div>
+            <div class="tab" onclick="showScreen('booking-history')">📜 Booking History</div>
+            <div class="tab" onclick="showScreen('profile')">👤 Profile</div>
+            <div class="tab" onclick="showScreen('owner-dashboard')">🏢 Owner Dashboard</div>
+            <div class="tab" onclick="showScreen('add-parking')">➕ Add Parking</div>
+            <div class="tab" onclick="showScreen('manage-slots')">🔧 Manage Slots</div>
+        </div>
+
+        <!-- Login Screen -->
+        <div id="login" class="screen active">
+            <h2>🔐 Login Screen</h2>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="login-email" value="user@parking.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="login-password" value="user123" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <button type="button" class="btn btn-secondary" onclick="showScreen('signup')" style="margin-left: 10px;">Go to Signup</button>
+            </form>
+            <div id="login-response" class="response"></div>
+        </div>
+
+        <!-- Signup Screen -->
+        <div id="signup" class="screen">
+            <h2>📝 Signup Screen</h2>
+            <form onsubmit="handleSignup(event)">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="signup-name" value="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="signup-email" value="newuser@parking.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" id="signup-phone" value="+1234567899" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="signup-password" value="password123" required>
+                </div>
+                <div class="form-group">
+                    <label>Role</label>
+                    <select id="signup-role" required>
+                        <option value="USER">User</option>
+                        <option value="OWNER">Owner</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Create Account</button>
+                <button type="button" class="btn btn-secondary" onclick="showScreen('login')" style="margin-left: 10px;">Go to Login</button>
+            </form>
+            <div id="signup-response" class="response"></div>
+        </div>
+
+        <!-- Home Screen -->
+        <div id="home" class="screen">
+            <h2>🏠 Home Screen</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>5</h3>
+                    <p>Active Bookings</p>
+                </div>
+                <div class="stat-card">
+                    <h3>12</h3>
+                    <p>Nearby Parkings</p>
+                </div>
+                <div class="stat-card">
+                    <h3>₹2,450</h3>
+                    <p>Total Spent</p>
+                </div>
+            </div>
+            <h3>Quick Actions</h3>
+            <div class="grid">
+                <div class="card" onclick="showScreen('map')">
+                    <h3>🗺️ Find Parking</h3>
+                    <p>Search for nearby parking locations</p>
+                </div>
+                <div class="card" onclick="showScreen('booking-history')">
+                    <h3>📜 My Bookings</h3>
+                    <p>View your booking history</p>
+                </div>
+                <div class="card" onclick="showScreen('profile')">
+                    <h3>👤 Profile</h3>
+                    <p>Manage your account</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map View Screen -->
+        <div id="map" class="screen">
+            <h2>🗺️ Map View Screen</h2>
+            <div class="map-container">
+                📍 Interactive Map with Parking Markers
+                <br>(Google Maps / Mapbox Integration)
+            </div>
+            <h3>Nearby Parkings</h3>
+            <div class="grid">
+                <div class="card" onclick="showScreen('parking-details')">
+                    <h3>Downtown Parking Plaza</h3>
+                    <p>📍 0.5 km away</p>
+                    <p>💰 ₹50/hour</p>
+                    <p><span class="badge badge-success">15 slots available</span></p>
+                    <p>⭐ 4.5 (120 reviews)</p>
+                </div>
+                <div class="card" onclick="showScreen('parking-details')">
+                    <h3>Airport Parking</h3>
+                    <p>📍 2.3 km away</p>
+                    <p>💰 ₹75/hour</p>
+                    <p><span class="badge badge-warning">5 slots available</span></p>
+                    <p>⭐ 4.8 (89 reviews)</p>
+                </div>
+                <div class="card">
+                    <h3>Mall Parking</h3>
+                    <p>📍 1.2 km away</p>
+                    <p>💰 ₹40/hour</p>
+                    <p><span class="badge badge-danger">0 slots available</span></p>
+                    <p>⭐ 4.2 (56 reviews)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Parking Details Screen -->
+        <div id="parking-details" class="screen">
+            <h2>🅿️ Parking Details Screen</h2>
+            <div class="card">
+                <h3>Downtown Parking Plaza</h3>
+                <p>📍 123 Main Street, City Center</p>
+                <p>💰 ₹50 per hour</p>
+                <p><span class="badge badge-primary">PUBLIC</span></p>
+                <p><span class="badge badge-success">15 slots available</span></p>
+                <p>📝 Covered parking with 24/7 security, CCTV surveillance</p>
+            </div>
+            
+            <h3 style="margin-top: 30px;">Reviews</h3>
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <strong>John Smith</strong>
+                        <div class="rating">
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star">★</span>
+                        </div>
+                    </div>
+                    <small>2 days ago</small>
+                </div>
+                <p style="margin-top: 10px;">Great parking facility! Very secure and well-maintained.</p>
+            </div>
+
+            <button class="btn" onclick="showScreen('booking')" style="margin-top: 20px;">Book Now</button>
+        </div>
+
+        <!-- Create Booking Screen -->
+        <div id="booking" class="screen">
+            <h2>📅 Create Booking Screen</h2>
+            <form onsubmit="handleBooking(event)">
+                <div class="two-column">
+                    <div class="form-group">
+                        <label>Start Date & Time</label>
+                        <input type="datetime-local" id="booking-start" required>
+                    </div>
+                    <div class="form-group">
+                        <label>End Date & Time</label>
+                        <input type="datetime-local" id="booking-end" required>
+                    </div>
+                </div>
+                
+                <h3>Select Slot</h3>
+                <div class="slot-grid">
+                    <div class="slot available" onclick="selectSlot(1)">A1</div>
+                    <div class="slot available" onclick="selectSlot(2)">A2</div>
+                    <div class="slot occupied">A3</div>
+                    <div class="slot available" onclick="selectSlot(4)">A4</div>
+                    <div class="slot available" onclick="selectSlot(5)">A5</div>
+                    <div class="slot occupied">A6</div>
+                    <div class="slot available" onclick="selectSlot(7)">A7</div>
+                    <div class="slot available" onclick="selectSlot(8)">A8</div>
+                </div>
+
+                <div class="card" style="margin-top: 20px;">
+                    <h3>Booking Summary</h3>
+                    <p>Duration: <strong id="duration">0 hours</strong></p>
+                    <p>Price per hour: <strong>₹50</strong></p>
+                    <p>Total Price: <strong id="total-price">₹0</strong></p>
+                </div>
+
+                <button type="submit" class="btn" style="margin-top: 20px;">Proceed to Payment</button>
+            </form>
+            <div id="booking-response" class="response"></div>
+        </div>
+
+        <!-- Payment Screen -->
+        <div id="payment" class="screen">
+            <h2>💳 Payment Screen</h2>
+            <div class="card">
+                <h3>Total Amount</h3>
+                <p style="font-size: 2em; color: #667eea; font-weight: bold;">₹150.00</p>
+            </div>
+
+            <h3 style="margin-top: 30px;">Select Payment Method</h3>
+            <div class="payment-methods">
+                <div class="payment-method selected" onclick="selectPayment('CARD')">
+                    <h4>💳</h4>
+                    <p>Card</p>
+                </div>
+                <div class="payment-method" onclick="selectPayment('UPI')">
+                    <h4>📱</h4>
+                    <p>UPI</p>
+                </div>
+                <div class="payment-method" onclick="selectPayment('WALLET')">
+                    <h4>👛</h4>
+                    <p>Wallet</p>
+                </div>
+                <div class="payment-method" onclick="selectPayment('NETBANKING')">
+                    <h4>🏦</h4>
+                    <p>Net Banking</p>
+                </div>
+            </div>
+
+            <button class="btn" onclick="processPayment()" style="margin-top: 20px;">Pay ₹150.00</button>
+            <div id="payment-response" class="response"></div>
+        </div>
+
+        <!-- Booking History Screen -->
+        <div id="booking-history" class="screen">
+            <h2>📜 Booking History Screen</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Downtown Parking Plaza</h3>
+                    <p>📅 Dec 15, 2025 - 10:00 AM to 2:00 PM</p>
+                    <p>🅿️ Slot: A5</p>
+                    <p>💰 ₹200</p>
+                    <p><span class="badge badge-success">COMPLETED</span></p>
+                    <button class="btn btn-secondary" style="margin-top: 10px;">View Details</button>
+                </div>
+                <div class="card">
+                    <h3>Airport Parking</h3>
+                    <p>📅 Dec 16, 2025 - 6:00 PM to 10:00 PM</p>
+                    <p>🅿️ Slot: B12</p>
+                    <p>💰 ₹300</p>
+                    <p><span class="badge badge-primary">ACTIVE</span></p>
+                    <button class="btn btn-danger" style="margin-top: 10px;">Cancel Booking</button>
+                </div>
+                <div class="card">
+                    <h3>Mall Parking</h3>
+                    <p>📅 Dec 10, 2025 - 2:00 PM to 6:00 PM</p>
+                    <p>🅿️ Slot: C3</p>
+                    <p>💰 ₹160</p>
+                    <p><span class="badge badge-success">COMPLETED</span></p>
+                    <button class="btn btn-secondary" style="margin-top: 10px;">Write Review</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Screen -->
+        <div id="profile" class="screen">
+            <h2>👤 Profile Screen</h2>
+            <div class="card">
+                <h3>User Information</h3>
+                <p><strong>Name:</strong> John Doe</p>
+                <p><strong>Email:</strong> user@parking.com</p>
+                <p><strong>Phone:</strong> +1234567892</p>
+                <p><strong>Role:</strong> <span class="badge badge-primary">USER</span></p>
+                <p><strong>Member Since:</strong> Jan 2025</p>
+            </div>
+
+            <div class="stats-grid" style="margin-top: 30px;">
+                <div class="stat-card">
+                    <h3>15</h3>
+                    <p>Total Bookings</p>
+                </div>
+                <div class="stat-card">
+                    <h3>₹4,500</h3>
+                    <p>Total Spent</p>
+                </div>
+            </div>
+
+            <button class="btn" style="margin-top: 20px;">Edit Profile</button>
+            <button class="btn btn-danger" style="margin-left: 10px;">Logout</button>
+        </div>
+
+        <!-- Owner Dashboard Screen -->
+        <div id="owner-dashboard" class="screen">
+            <h2>🏢 Owner Dashboard Screen</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>3</h3>
+                    <p>Total Parkings</p>
+                </div>
+                <div class="stat-card">
+                    <h3>180</h3>
+                    <p>Total Slots</p>
+                </div>
+                <div class="stat-card">
+                    <h3>₹45,000</h3>
+                    <p>Monthly Revenue</p>
+                </div>
+            </div>
+
+            <h3>My Parkings</h3>
+            <div class="grid">
+                <div class="card">
+                    <h3>Downtown Parking Plaza</h3>
+                    <p>📍 123 Main Street</p>
+                    <p>🅿️ 50 slots</p>
+                    <p>💰 ₹50/hour</p>
+                    <p><span class="badge badge-primary">PUBLIC</span></p>
+                    <div style="margin-top: 15px;">
+                        <button class="btn btn-secondary">Edit</button>
+                        <button class="btn" onclick="showScreen('manage-slots')" style="margin-left: 10px;">Manage Slots</button>
+                        <button class="btn btn-danger" style="margin-left: 10px;">Delete</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Airport Parking</h3>
+                    <p>📍 456 Airport Road</p>
+                    <p>🅿️ 100 slots</p>
+                    <p>💰 ₹75/hour</p>
+                    <p><span class="badge badge-primary">PUBLIC</span></p>
+                    <div style="margin-top: 15px;">
+                        <button class="btn btn-secondary">Edit</button>
+                        <button class="btn" onclick="showScreen('manage-slots')" style="margin-left: 10px;">Manage Slots</button>
+                        <button class="btn btn-danger" style="margin-left: 10px;">Delete</button>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn" onclick="showScreen('add-parking')" style="margin-top: 20px;">➕ Add New Parking</button>
+        </div>
+
+        <!-- Add Parking Screen -->
+        <div id="add-parking" class="screen">
+            <h2>➕ Add Parking Screen</h2>
+            <form onsubmit="handleAddParking(event)">
+                <div class="form-group">
+                    <label>Parking Name *</label>
+                    <input type="text" id="parking-name" value="New Parking Location" required>
+                </div>
+                <div class="form-group">
+                    <label>Address *</label>
+                    <textarea id="parking-address" rows="3" required>123 New Street, City</textarea>
+                </div>
+                <div class="two-column">
+                    <div class="form-group">
+                        <label>Latitude *</label>
+                        <input type="number" step="0.00000001" id="parking-lat" value="28.6139" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Longitude *</label>
+                        <input type="number" step="0.00000001" id="parking-lng" value="77.2090" required>
+                    </div>
+                </div>
+                <div class="two-column">
+                    <div class="form-group">
+                        <label>Price per Hour (₹) *</label>
+                        <input type="number" step="0.01" id="parking-price" value="50" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Total Slots *</label>
+                        <input type="number" id="parking-slots" value="20" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Parking Type *</label>
+                    <select id="parking-type" required>
+                        <option value="PRIVATE">Private</option>
+                        <option value="PUBLIC">Public</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="parking-description" rows="3">Covered parking with security</textarea>
+                </div>
+                <button type="submit" class="btn">Add Parking</button>
+                <button type="button" class="btn btn-secondary" onclick="showScreen('owner-dashboard')" style="margin-left: 10px;">Cancel</button>
+            </form>
+            <div id="add-parking-response" class="response"></div>
+        </div>
+
+        <!-- Manage Slots Screen -->
+        <div id="manage-slots" class="screen">
+            <h2>🔧 Manage Slots Screen</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>35</h3>
+                    <p>Available</p>
+                </div>
+                <div class="stat-card" style="background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);">
+                    <h3>10</h3>
+                    <p>Occupied</p>
+                </div>
+                <div class="stat-card" style="background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);">
+                    <h3>5</h3>
+                    <p>Maintenance</p>
+                </div>
+            </div>
+
+            <h3>Slot List</h3>
+            <div class="grid">
+                <div class="card">
+                    <h3>Slot A1</h3>
+                    <p><span class="badge badge-success">AVAILABLE</span></p>
+                    <button class="btn btn-secondary" style="margin-top: 10px;">Mark as Maintenance</button>
+                </div>
+                <div class="card">
+                    <h3>Slot A2</h3>
+                    <p><span class="badge badge-danger">OCCUPIED</span></p>
+                    <p style="font-size: 0.9em; color: #666;">Booked until: Dec 16, 6:00 PM</p>
+                </div>
+                <div class="card">
+                    <h3>Slot A3</h3>
+                    <p><span class="badge badge-warning">MAINTENANCE</span></p>
+                    <button class="btn" style="margin-top: 10px;">Mark as Available</button>
+                </div>
+                <div class="card">
+                    <h3>Slot A4</h3>
+                    <p><span class="badge badge-success">AVAILABLE</span></p>
+                    <button class="btn btn-secondary" style="margin-top: 10px;">Mark as Maintenance</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedSlot = null;
+        let selectedPaymentMethod = 'CARD';
+
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            const response = document.getElementById('login-response');
+            response.className = 'response show success';
+            response.innerHTML = `<strong>✓ Login Successful!</strong><br>Email: ${email}<br>Redirecting to home...`;
+            
+            setTimeout(() => showScreen('home'), 1500);
+        }
+
+        function handleSignup(e) {
+            e.preventDefault();
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const role = document.getElementById('signup-role').value;
+            
+            const response = document.getElementById('signup-response');
+            response.className = 'response show success';
+            response.innerHTML = `<strong>✓ Account Created!</strong><br>Name: ${name}<br>Email: ${email}<br>Role: ${role}`;
+        }
+
+        function selectSlot(slotId) {
+            document.querySelectorAll('.slot.available').forEach(s => s.classList.remove('selected'));
+            event.target.classList.add('selected');
+            selectedSlot = slotId;
+            calculatePrice();
+        }
+
+        function calculatePrice() {
+            const start = document.getElementById('booking-start').value;
+            const end = document.getElementById('booking-end').value;
+            
+            if (start && end) {
+                const startDate = new Date(start);
+                const endDate = new Date(end);
+                const hours = Math.ceil((endDate - startDate) / (1000 * 60 * 60));
+                const price = hours * 50;
+                
+                document.getElementById('duration').textContent = hours + ' hours';
+                document.getElementById('total-price').textContent = '₹' + price;
+            }
+        }
+
+        function handleBooking(e) {
+            e.preventDefault();
+            if (!selectedSlot) {
+                alert('Please select a slot');
+                return;
+            }
+            
+            const response = document.getElementById('booking-response');
+            response.className = 'response show success';
+            response.innerHTML = '<strong>✓ Booking Created!</strong><br>Proceeding to payment...';
+            
+            setTimeout(() => showScreen('payment'), 1500);
+        }
+
+        function selectPayment(method) {
+            document.querySelectorAll('.payment-method').forEach(p => p.classList.remove('selected'));
+            event.target.closest('.payment-method').classList.add('selected');
+            selectedPaymentMethod = method;
+        }
+
+        function processPayment() {
+            const response = document.getElementById('payment-response');
+            response.className = 'response show success';
+            response.innerHTML = `<strong>✓ Payment Successful!</strong><br>Method: ${selectedPaymentMethod}<br>Amount: ₹150.00<br>Your booking is confirmed!`;
+            
+            setTimeout(() => showScreen('booking-history'), 2000);
+        }
+
+        function handleAddParking(e) {
+            e.preventDefault();
+            const name = document.getElementById('parking-name').value;
+            const slots = document.getElementById('parking-slots').value;
+            
+            const response = document.getElementById('add-parking-response');
+            response.className = 'response show success';
+            response.innerHTML = `<strong>✓ Parking Added!</strong><br>Name: ${name}<br>Slots: ${slots}`;
+            
+            setTimeout(() => showScreen('owner-dashboard'), 1500);
+        }
+
+        // Set default datetime values
+        const now = new Date();
+        const tomorrow = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+        document.getElementById('booking-start').value = now.toISOString().slice(0, 16);
+        document.getElementById('booking-end').value = tomorrow.toISOString().slice(0, 16);
+        calculatePrice();
+    </script>
+</body>
+</html>

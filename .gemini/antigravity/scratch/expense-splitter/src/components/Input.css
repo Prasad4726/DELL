@@ -1,0 +1,91 @@
+.input-wrapper {
+    margin-bottom: var(--space-lg);
+    width: 100%;
+}
+
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: var(--color-bg-primary);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+    transition: all var(--transition-base) var(--ease-in-out);
+    box-shadow: var(--shadow-sm);
+}
+
+.input-container.focused {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-glow), var(--shadow-md);
+}
+
+.input-container.has-value {
+    border-color: var(--color-border);
+}
+
+.input-prefix {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-secondary);
+    margin-right: var(--space-sm);
+    user-select: none;
+}
+
+.input-field {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    color: var(--color-text-primary);
+    padding: var(--space-sm) 0;
+    width: 100%;
+}
+
+.input-field::placeholder {
+    color: var(--color-text-light);
+    opacity: 0;
+    transition: opacity var(--transition-base) var(--ease-in-out);
+}
+
+.input-container.focused .input-field::placeholder {
+    opacity: 1;
+}
+
+.input-label {
+    position: absolute;
+    left: var(--space-md);
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--color-bg-primary);
+    padding: 0 var(--space-xs);
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    pointer-events: none;
+    transition: all var(--transition-base) var(--ease-out);
+    font-weight: var(--font-weight-medium);
+}
+
+.input-required {
+    color: var(--color-danger);
+    margin-left: 2px;
+}
+
+/* Number input arrows removal */
+.input-field::-webkit-outer-spin-button,
+.input-field::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.input-field[type=number] {
+    -moz-appearance: textfield;
+}
+
+@media (max-width: 768px) {
+    .input-container {
+        padding: var(--space-sm) var(--space-md);
+    }
+}

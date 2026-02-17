@@ -1,0 +1,14 @@
+{
+  "socketPath": "\\\\.\\pipe\\mcp-da5de89b-0aa6-4d07-bcf5-08eceb536295.sock",
+  "scheme": "pipe",
+  "headers": {
+    "Authorization": "Nonce 916201da-cdf4-427e-b51f-1b3a5b80f138"
+  },
+  "pid": 7028,
+  "ideName": "Visual Studio Code",
+  "timestamp": 1771341215573,
+  "workspaceFolders": [
+    "c:\\Users\\DELL\\Downloads\\justice-law-chambers-main\\justice-law-chambers-main\\frontend"
+  ],
+  "isTrusted": true
+}
